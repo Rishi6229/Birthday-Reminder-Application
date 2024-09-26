@@ -35,7 +35,6 @@ function App() {
           <BirthdayForm addBirthday={addBirthday} />
           <BirthdayList birthdays={birthdays} />
           <button onClick={clearBirthdays}>Clear Birthday</button>
-          <button onClick={handleLogout}>Logout</button>
     </div>
   );
 }
