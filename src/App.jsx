@@ -1,33 +1,41 @@
 import React, { useEffect, useState } from "react";
 import BirthdayForm from "./components/BirthdayForm";
 import BirthdayList from "./components/BirthdayList";
-import './App.css';
+import "./App.css";
 
 function App() {
+  const [birthdays, setBirthdays] = useState([]);
 
-  const [birthdays  , setBirthdays] = useState([]);
+  const addBirthday = (newBirthday) => {
+    setBirthdays([...birthdays, newBirthday]);
+  };
 
-  const addBirthday = (newBirthday) =>{
-    setBirthdays([...birthdays , newBirthday]);
-  }
-
-  const clearBirthdays = ()=>{
+  const clearBirthdays = () => {
     setBirthdays([]);
-  }
-  
+  };
+
+  // const handleLogin = () => {
+  //   setUserLoggedIn(true);
+  //   localStorage.setItem("isUserLoggedIn", true);
+  // };
+
+  // const handleLogout = () => {
+  //   setUserLoggedIn(false);
+  //   localStorage.removeItem("isUserLoggedIn");
+  // };
+
+  // const handleRegistration = () => {
+  //   setUserRegistered(true);
+  // };
+
   return (
     <div className="app-container">
       <h1>Birthday Reminder</h1>
 
-      {/* add the form for inputting new birthdays */}
-      <BirthdayForm addBirthday={addBirthday}/>
-
-      {/* List of birthdays */}
-      <BirthdayList birthdays={birthdays}/>
-
-
-      {/* Button to clear all birthdays */}
-      <button onClick={clearBirthdays}>Clear Birthday</button>
+          <BirthdayForm addBirthday={addBirthday} />
+          <BirthdayList birthdays={birthdays} />
+          <button onClick={clearBirthdays}>Clear Birthday</button>
+          <button onClick={handleLogout}>Logout</button>
     </div>
   );
 }
