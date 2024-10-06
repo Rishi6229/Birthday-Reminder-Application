@@ -6,7 +6,7 @@ function BirthdayList({birthdays}) {
        {birthdays.length > 0 ? (
         birthdays.map((birthday)=>(
             <div key={birthday.id} className='birthday-item'>
-                <p> {birthday.name} {birthday.birthday}</p>
+                <p> {birthday.name} : {birthday.birthday}</p>
             </div>
         ))
        ):(
