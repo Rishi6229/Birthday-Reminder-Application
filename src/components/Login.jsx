@@ -1,22 +1,26 @@
-import React, { useState } from "react";
+// components/Login.js
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Login({ onLogin }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Get the stored credentials from localStorage
-    const storedUsername = localStorage.getItem("username");
-    const storedPassword = localStorage.getItem("password");
-
-    // Basic authentication check
-    if (username === storedUsername && password === storedPassword) {
-      onLogin(); // Log the user in
-    } else {
-      alert("Invalid credentials!");
+    if (!username || !password) {
+      alert('Please enter both username and password');
+      return;
     }
+
+    // Store both username and password properly in localStorage with two arguments
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
+
+    // Redirect to the Birthday Reminder page after successful login
+    navigate('/birthday-reminder');
   };
 
   return (
@@ -28,6 +32,7 @@ function Login({ onLogin }) {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          placeholder="Enter username"
           required
         />
         <label>Password:</label>
@@ -35,12 +40,13 @@ function Login({ onLogin }) {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="Enter password"
           required
         />
         <button type="submit">Login</button>
       </form>
     </div>
   );
-}
+};
 
 export default Login;

@@ -1,19 +1,23 @@
-import React from 'react'
+// components/BirthdayList.js
+import React from 'react';
 
-function BirthdayList({birthdays}) {
+const BirthdayList = ({ birthdays }) => {
   return (
-    <div className='birthday-list'>
-       {birthdays.length > 0 ? (
-        birthdays.map((birthday)=>(
-            <div key={birthday.id} className='birthday-item'>
-                <p> {birthday.name} : {birthday.birthday}</p>
-            </div>
-        ))
-       ):(
-        <p>No birthdays to display</p>
-       )}
+    <div>
+      <h2>Upcoming Birthdays:</h2>
+      {birthdays.length === 0 ? (
+        <p>No birthdays added yet.</p>
+      ) : (
+        <ul>
+          {birthdays.map((birthday, index) => (
+            <li key={index}>
+              {birthday.name} - {new Date(birthday.date).toLocaleDateString()}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default BirthdayList
+export default BirthdayList;
